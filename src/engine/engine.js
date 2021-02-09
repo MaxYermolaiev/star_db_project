@@ -9,6 +9,7 @@ export default class engine {
         let temp = await this.queryData('/planets/');
         return temp.results.map(this._transformPlanet);
     }
+
      getPlanet=async(id)=> {
         let temp = await this.queryData(`/planets/${id}`)
         return this._transformPlanet(temp)
@@ -25,14 +26,25 @@ export default class engine {
         let temp = await this.queryData('/starships/');
         return temp.results.map(this._transformStarship);
     }
-    async getStarship(id) {
-        let temp =  this.queryData(`/starships/${id}`);
+     getStarship=async(id) =>{
+        let temp = await this.queryData(`/starships/${id}`);
         return this._transformStarship(temp)
+    }
+    getPersonImg=(id)=>{
+        return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+    }
+    getStarshipImg=(id)=>{
+        return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
+    }
+    //./assets/img/starships/10.jpg
+    getPlanetImg=(id)=>{
+        return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
     }
     _extractId=(item)=>{
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];
     }
+
     _transformPerson=(person)=>{
        // let idRegExp = /\/([0-9]*)\/$/;
         //let id= person.url.match(idRegExp)[1];
@@ -47,10 +59,12 @@ export default class engine {
     }
 
     _transformStarship=(starship)=>{
-        let idRegExp = /\/([0-9]*)\/$/;
-        let id= starship.url.match(idRegExp)[1];
+       // let idRegExp = /\/([0-9]*)\/$/;
+       // console.log(starship.url)
+       // let id= starship.url.match(idRegExp)[1];
+
         return {
-            id,
+            id:this._extractId(starship),
             name: starship.name,
             model: starship.model,
             manufacturer: starship.manufacturer,

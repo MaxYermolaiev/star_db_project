@@ -1,3 +1,3 @@
-import ItemDetails,{Record} from './item-details';
-export {Record}
-export default ItemDetails;
+import displayItems from './HighOrderComponent';
+export default displayItems;
+

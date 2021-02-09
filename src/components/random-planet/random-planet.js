@@ -11,30 +11,33 @@ export default class RandomPlanet extends Component {
         loading: true,
         error: false
     };
-  componentDidMount() {
-      this.updatePlanet();
-      let timer = setInterval(this.updatePlanet,5000)
-  }
-componentWillUnmount() {
-      clearInterval(this.timer)
-}
+
+    componentDidMount() {
+        this.updatePlanet();
+        let timer = setInterval(this.updatePlanet, 8000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timer)
+    }
 
     randomInteger(min, max) {
         // получить случайное число от (min-0.5) до (max+0.5)
         let rand = min - 0.5 + Math.random() * (max - min + 1);
         return Math.round(rand);
     }
+
     Engine = new engine();
     onPlanetLoaded = (planet) => {
-        this.setState({planet, loading: false,error: false}
+        this.setState({planet, loading: false, error: false}
         );
     };
     onError = (err) => {
         this.setState({error: true, loading: false})
     }
 
-    updatePlanet=() =>{
-        const id = this.randomInteger(0,10);
+    updatePlanet = () => {
+        const id = this.randomInteger(0, 10);
         this.Engine
             .getPlanet(id)
             .then(this.onPlanetLoaded)
@@ -45,7 +48,6 @@ componentWillUnmount() {
     render() {
 
         let {planet, loading, error} = this.state;
-      //  console.log(this.state)
         let hasData = !(loading || error);
         let spinner = (loading) ? <Spinner/> : null;
         let data = (hasData) ? <PageView planet={planet}/> : null;
