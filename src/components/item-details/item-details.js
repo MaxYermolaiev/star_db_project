@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import engine from "../../engine/engine";
-import './person-details.css';
+import './item-details.css';
 import Spinner from "../spinner";
 import ErrorButton from "../ErrorButton";
-export default class PersonDetails extends Component {
+export default class ItemDetails extends Component {
 state={
   person:null,
-  spiner:true
+  spiner:false
 }
 Engine = new engine();
 componentDidMount() {
@@ -17,8 +17,10 @@ componentDidUpdate(prevProps){
     this.updatePerson()
 }
   updatePerson(){
+  this.setState({spiner:true})
   let {personId:id} = this.props;
-  if (!id) return;
+  if (!id){this.setState({spiner:false})
+    return}
    this.Engine.getPerson(id)
        .then((person)=>{
          this.setState({person,spiner:false})
@@ -26,9 +28,12 @@ componentDidUpdate(prevProps){
 }
 
   render() {
-  if(!this.state.person||this.state.spiner){
-    return <Spinner/>
-  }
+  //if(!this.state.person||this.state.spiner){
+  //  return <Spinner/>
+  //}
+    if (!this.state.person) {
+      return <span>Select a person from a list</span>;
+    }
     let {id,name,gender,birthYear,
       eyeColor} = this.state.person;
     return (
