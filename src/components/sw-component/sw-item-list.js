@@ -11,14 +11,13 @@ let MethodsAllPeoples=(Engine)=>{
     return {getData:Engine.getAllPeoples}
 }
 let MethodsAllStarships=(Engine)=>{
-    return {getData:Engine.getAllPlanets}
-}
-let MethodsAllPlanets=(Engine)=>{
     return {getData:Engine.getAllStarships}
 }
+let MethodsAllPlanets=(Engine)=>{
+    return {getData:Engine.getAllPlanets}
+}
 
-let PersonList= Wrapper(displayItems(withChildrenFunction(ItemList,({name}) => <span>{name}</span>)),MethodsAllPeoples)
-console.log(PersonList)
-let PlanetList= Wrapper(displayItems(withChildrenFunction(ItemList,({name}) => <span>{name}</span>)),MethodsAllPlanets)
-let StrashipList= Wrapper(displayItems(withChildrenFunction(ItemList,({name}) => <span>{name}</span>)),MethodsAllStarships)
+let PersonList= Wrapper(MethodsAllPeoples)(displayItems(withChildrenFunction(ItemList,({name}) => <span>{name}</span>)))
+let PlanetList= Wrapper(MethodsAllPlanets)(displayItems(withChildrenFunction(ItemList,({name}) => <span>{name}</span>)))
+let StrashipList= Wrapper(MethodsAllStarships)(displayItems(withChildrenFunction(ItemList,({name}) => <span>{name}</span>)))
 export  {PersonList, PlanetList, StrashipList};

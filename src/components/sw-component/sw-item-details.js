@@ -33,9 +33,9 @@ let Straship=(props)=>{
         </ItemDetails>
     )}
 
-let PlanetDetails=Wrapper(Planet,MethodsServisePlanet)
-let StrashipDetails=Wrapper(Straship,MethodsServiseStarship)
-let PersonDetails=Wrapper(Person,MethodsServisePerson);
+let PlanetDetails=Wrapper(MethodsServisePlanet)(Planet)
+let StrashipDetails=Wrapper(MethodsServiseStarship)(Straship)
+let PersonDetails=Wrapper(MethodsServisePerson)(Person);
 export {PersonDetails,PlanetDetails,StrashipDetails}
 
 

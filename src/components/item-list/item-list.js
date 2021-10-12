@@ -42,5 +42,5 @@ let ItemList = (props) => {
     );
 }
 
-
+ItemList.defaultProps={onSelectItem:()=>{}}
 export default ItemList;

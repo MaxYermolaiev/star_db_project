@@ -1,25 +1,28 @@
 import React from 'react';
 
 import './header.css';
-
+import {Link, Route} from 'react-router-dom'
+import {PeoplePage} from "../Pages";
 const Header = ({onEngineChange}) => {
   return (
     <div className="header d-flex">
       <h3>
-        <a href="www.google.com">
-          Star DB
-        </a>
+          <Link to="/">Star DB</Link>
       </h3>
       <ul className="d-flex">
         <li>
-          <a href="www.google.com">People</a>
+          <Link to="/People">People</Link>
         </li>
+
         <li>
-          <a href="www.google.com">Planets</a>
+          <Link to="/Planet">Planet</Link>
         </li>
-        <li>
-          <a href="www.google.com">Starships</a>
-        </li>
+          <li>
+              <Link to="/Login">Login</Link>
+          </li>
+          <li>
+              <Link to="/SecretPage">SecretPage</Link>
+          </li>
       </ul>
         <button className="btn btn-primary btn-sm"
         onClick={onEngineChange}>change server</button>

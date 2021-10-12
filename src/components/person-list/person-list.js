@@ -19,7 +19,6 @@ class ErrBoundary extends Component{
 
     return this.props.children;
 }
-
 }
 export default class PersonList extends Component {
 

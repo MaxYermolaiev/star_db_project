@@ -19,13 +19,14 @@ state={
 };
 componentDidMount() {this.updatePerson()}
 componentDidUpdate(prevProps){
-  if(this.props.id!==prevProps.id||
+  if(this.props.itemId!==prevProps.itemId||
       this.props.getData!==prevProps.getData||
       this.props.getImage!==this.props.getImage
   )this.updatePerson()
 }
 updatePerson(){
   this.setState({spiner:true})
+
   let {itemId:id} = this.props;
   if (!id){this.setState({spiner:false});return}
     this.props.getData(id)
